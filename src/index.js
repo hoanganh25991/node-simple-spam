@@ -4,7 +4,7 @@ import {TinyPage} from "./TinyPage";
 
 const axios = Oxios.create({timeout: 10000})
 const _ = console.log
-const threshold = 1000
+const threshold = 1
 const site = "http://hahuyetapcao.com/"
 
 let count = 0
@@ -24,12 +24,13 @@ const call = async () => {
     // })
     const page = await TinyPage()
     await page.goto(site)
+    await page.screenshot({path: "example.png"})
     _("[call] success")
   }catch(err){
     _("[call] fail")
   }finally {
     count--
-    loop()
+    // loop()
   }
 }
 
