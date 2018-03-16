@@ -1,13 +1,15 @@
 import Oxios from "axios"
 import cpr from "child_process"
 import {TinyPage} from "./TinyPage";
+import {stdout as log} from "single-line-log"
 
 const axios = Oxios.create({timeout: 10000})
-const _ = console.log
+const _ = log
 const threshold = 10
 const site = "http://hahuyetapcao.com/"
 
 let count = 0
+let success = 0
 let wait = Promise.resolve()
 
 const call = async () => {
@@ -24,8 +26,9 @@ const call = async () => {
     // })
     const page = await TinyPage()
     await page.goto(site)
-    await page.screenshot({path: "example.png"})
-    _("[call] success")
+    await page.close()
+    success++
+    _("[call][success]", success)
   }catch(err){
     _("[call] fail")
   }finally {
