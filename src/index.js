@@ -18,6 +18,7 @@ const call = async () => {
     _("[call] fail")
   }finally {
     count--
+    loop()
   }
 }
 
@@ -27,9 +28,7 @@ const loop = () => {
     const waitCall = call()
     wait = wait.then(() => waitCall)
   }
-  loop()
 }
-
 
 (async() => {
   loop()
