@@ -14,7 +14,7 @@ const call = async () => {
 
   try{
     // await axios.get(site)
-    const wget = `aria2c ${site} > /dev/null`
+    const wget = `aria2c -d /dev -o null --allow-overwrite=true --file-allocation=none --max-connection-per-server=4 ${site}`
     await new Promise((resolve, reject) => {
       cpr.exec(wget, err => {
         if(err) return reject()
