@@ -1,5 +1,6 @@
 import Oxios from "axios"
 import cpr from "child_process"
+import {TinyPage} from "./TinyPage";
 
 const axios = Oxios.create({timeout: 10000})
 const _ = console.log
@@ -14,13 +15,15 @@ const call = async () => {
 
   try{
     // await axios.get(site)
-    const wget = `aria2c -d /dev -o null --allow-overwrite=true --file-allocation=none --max-connection-per-server=4 ${site}`
-    await new Promise((resolve, reject) => {
-      cpr.exec(wget, err => {
-        if(err) return reject()
-        resolve()
-      })
-    })
+    // const wget = `aria2c -d /dev -o null --allow-overwrite=true --file-allocation=none --max-connection-per-server=4 ${site}`
+    // await new Promise((resolve, reject) => {
+    //   cpr.exec(wget, err => {
+    //     if(err) return reject()
+    //     resolve()
+    //   })
+    // })
+    const page = await TinyPage()
+    await page.goto(site)
     _("[call] success")
   }catch(err){
     _("[call] fail")
