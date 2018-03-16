@@ -14,7 +14,7 @@ const call = async () => {
 
   try{
     // await axios.get(site)
-    const wget = `wget ${site} -qO &> /dev/null`
+    const wget = `aria2c ${site} > /dev/null`
     await new Promise((resolve, reject) => {
       cpr.exec(wget, err => {
         if(err) return reject()
