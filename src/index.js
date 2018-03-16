@@ -1,4 +1,5 @@
 import Oxios from "axios"
+import cpr from "child_process"
 
 const axios = Oxios.create({timeout: 10000})
 const _ = console.log
@@ -12,7 +13,14 @@ const call = async () => {
   _("[count]", count)
 
   try{
-    await axios.get(site)
+    // await axios.get(site)
+    const wget = `wget ${site} -qO &> /dev/null`
+    await new Promise((resolve, reject) => {
+      cpr.exec(wget, err => {
+        if(err) return reject()
+        resolve()
+      })
+    })
     _("[call] success")
   }catch(err){
     _("[call] fail")
