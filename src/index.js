@@ -22,11 +22,11 @@ const call = async () => {
 }
 
 const loop = () => {
-  do{
+  while(count < threshold){
     count++
     const waitCall = call()
     wait = wait.then(() => waitCall)
-  }while(count < threshold)
+  }
   loop()
 }
 
