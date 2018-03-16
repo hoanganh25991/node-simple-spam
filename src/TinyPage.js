@@ -25,7 +25,7 @@ const initBrowser = mergedOption => {
 export const TinyPage = async (option = {}) => {
   const mergedOption = { ...config, ...option }
   if (!browser) browser = await initBrowser(mergedOption)
-  return openDefaultPage(browser)
+  return await browser.newPage()
 }
 
 TinyPage.closeBrowser = async () => {

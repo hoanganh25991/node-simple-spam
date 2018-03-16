@@ -4,7 +4,7 @@ import {TinyPage} from "./TinyPage";
 
 const axios = Oxios.create({timeout: 10000})
 const _ = console.log
-const threshold = 1
+const threshold = 10
 const site = "http://hahuyetapcao.com/"
 
 let count = 0
@@ -30,7 +30,7 @@ const call = async () => {
     _("[call] fail")
   }finally {
     count--
-    // loop()
+    setTimeout(loop, 300)
   }
 }
 
@@ -45,4 +45,5 @@ const loop = () => {
 (async() => {
   loop()
   await wait
+  await TinyPage.closeBrowser()
 })()
